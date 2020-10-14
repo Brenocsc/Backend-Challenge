@@ -13,4 +13,5 @@ Run `npm run test` to execute all tests.
 
 ## How to use
 
-After the project is already running, import `backend-challenge-api.postman_collection.json` to Postman, then run the two endpoints.
+After the project is already running, import `backend-challenge-api.postman_collection.json`
+to Postman, then run the two endpoints.
