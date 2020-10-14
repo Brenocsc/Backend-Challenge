@@ -1,0 +1,89 @@
+{
+	"info": {
+		"_postman_id": "9759bb33-0447-42b8-9d32-543e0d6b92a2",
+		"name": "backend-challenge-collection-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "auth-login",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "pombo",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "breno",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"login\": \"joaosilva123\",\n    \"password\": \"easy12345\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register-file",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAzNmEyOTAzLTUwNWYtNDA4ZC04ZTBiLTYzNDllOWJjZDJlZCIsImlhdCI6MTYwMjYzMjQzOCwiZXhwIjoxNjAyNjM2MDM4fQ.2wxVuqxwRysm5GuvWBCOaSMFkhETHf-7jwDnTjS3QDc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"joao da silva\",\n    \"birth\": \"01 03 1992\",\n    \"cpf\": \"121 212 121 21\",\n    \"rg\": \"123 121 231\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/file/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"file",
+						"register"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -1,0 +1,22 @@
+{
+	"AUTH": {
+		"AUTH_LOGIN": {
+			"ERROR": {
+				"GET_USER": "Login error. Could not get user",
+				"NOT_FOUND_USER": "Login error. User not found",
+				"INVALID_PASSWORD": "Login error. Invalid Password",
+				"DEFAULT": "Login error"
+			}
+		}
+	},
+	"FILE": {
+		"REGISTER_FILE": {
+			"ERROR": {
+				"GET_USER": "Register error. Could not get user",
+				"DEFAULT": "Register error",
+				"BUILD_WRITE_DATA": "Register error. Could not build and write data",
+				"MISSING_DATA": "Register error. Missing some value data"
+			}
+		}
+	}
+}
