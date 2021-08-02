@@ -14,6 +14,7 @@
 			"ERROR": {
 				"GET_USER": "Register error. Could not get user",
 				"DEFAULT": "Register error",
+				"NOT_FOUND_USER": "Register error. User not found",
 				"BUILD_WRITE_DATA": "Register error. Could not build and write data",
 				"MISSING_DATA": "Register error. Missing some value data"
 			}
