@@ -1,10 +1,20 @@
-import { fileRepository } from '../../repository'
-import { translateService } from '../../../../core/services/translate'
-import { serializeError } from '../../../../core/services/serialize-error'
+import { Request, Response } from 'express'
+import { fileRepository } from '../repositories/file-repository'
+import { userRepository } from '../repositories/user-repository'
+import { translateService } from './translate'
+import { serializeError } from './serialize-error'
+import { User } from '../interfaces/user-interface'
+import { RegisterFileBody } from '../interfaces/register-file-body-interface'
 
-const getUser = async (userId) => {
+const getUser = async (userId: string) => {
   try {
-    return fileRepository.getUser(userId)
+    const user = userRepository.getUserById(userId)
+    if (!user) {
+      return Promise.reject({
+        customMessage: translateService.translate('AUTH.AUTH_LOGIN.ERROR.NOT_FOUND_USER')
+      })
+    }
+    return user
   } catch (error) {
     return Promise.reject({
       customMessage: translateService.translate('FILE.REGISTER_FILE.ERROR.GET_USER')
@@ -12,7 +22,7 @@ const getUser = async (userId) => {
   }
 }
 
-const checkData = async (body) => {
+const checkData = async (body: RegisterFileBody) => {
   const hasAll = 'name' in body &&
     'birth' in body &&
     'cpf' in body &&
@@ -25,7 +35,7 @@ const checkData = async (body) => {
   }
 }
 
-const buildContent = (user, body) => {
+const buildContent = (user: User, body: RegisterFileBody) => {
   const { name, birth, cpf, rg } = body
   const { login, password } = user
 
@@ -41,7 +51,7 @@ const buildContent = (user, body) => {
   return content
 }
 
-const buildAndWriteFile = async (user, body) => {
+const buildAndWriteFile = async (user: User, body: RegisterFileBody) => {
   try {
     const content = buildContent(user, body)
     const nameFile = `${body.name}.txt`
@@ -55,10 +65,10 @@ const buildAndWriteFile = async (user, body) => {
   }
 }
 
-const registerFile = async (req, res) => {
+const registerFile = async (req: Request, _: Response) => {
   try {
-    const { userId, body } = req
-    const user = await getUser(userId)
+    const { body } = req
+    const user = await getUser(body.userId)
 
     await checkData(body)
     await buildAndWriteFile(user, body)

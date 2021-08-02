@@ -1,4 +1,6 @@
-const memoryUser = [
+import { User } from '../../api/interfaces/user-interface'
+
+const memoryUser: User[] = [
   {
     id: '036a2903-505f-408d-8e0b-6349e9bcd2ed',
     login: 'joaosilva123',
