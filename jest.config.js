@@ -1,5 +1,5 @@
 module.exports = {
   clearMocks: true,
-  coverageProvider: "babel",
-  testEnvironment: "node",
-};
+  coverageProvider: 'babel',
+  testEnvironment: 'node'
+}
