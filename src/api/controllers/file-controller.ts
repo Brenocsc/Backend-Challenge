@@ -1,6 +1,7 @@
-import { registerFile } from './use-cases'
+import { Request, Response } from 'express'
+import { registerFile } from '../services/register-file'
 
-const processRegisterFile = (req, res) => {
+const processRegisterFile = (req: Request, res: Response) => {
   registerFile(req, res)
     .then(resp => res.status(200).send(resp))
     .catch(error => res.status(error.status).send({ message: error.error.message }))

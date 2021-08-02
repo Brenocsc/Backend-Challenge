@@ -1,6 +1,7 @@
-import { authLogin } from './use-cases'
+import { Request, Response } from 'express'
+import { authLogin } from '../services/auth-login'
 
-const processAuthLogin = (req, res) => {
+const processAuthLogin = (req: Request, res: Response) => {
   authLogin(req, res)
     .then(resp => res.status(200).send(resp))
     .catch(error => res.status(error.status).send({ message: error.error.message }))
