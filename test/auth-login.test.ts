@@ -1,9 +1,9 @@
 import i18n from 'i18n'
-import { authLogin } from './auth-login'
-import { authRepository } from '../../repository'
-import { translateService } from '../../../../core/services/translate'
-import { jwtService } from '../../../../core/services/jwt'
-import { config } from '../../../../core/config'
+import { authLogin } from '../src/api/services/auth-login'
+import { userRepository } from '../src/api/repositories/user-repository'
+import { translateService } from '../src/api/services/translate'
+import { jwtService } from '../src/api/services/jwt'
+import { config } from '../src/config'
 
 i18n.configure(config.i18nConfig)
 
@@ -17,7 +17,7 @@ const requestBody = {
 const expectAssertValue = 1
 
 beforeEach(async () => {
-  authRepository.getUser = jest.fn(login => ({
+  userRepository.getUserByLogin = jest.fn(login => ({
     id: '036a2903',
     login,
     password: 'test123'
@@ -31,7 +31,7 @@ test('authLogin should call every repository request when request is ok', async 
 
   await authLogin(requestBody)
 
-  expect(authRepository.getUser.mock.calls.length).toBe(toBeValue)
+  expect(userRepository.getUser.mock.calls.length).toBe(toBeValue)
   expect(jwtService.generateToken.mock.calls.length).toBe(toBeValue)
 })
 
@@ -43,7 +43,7 @@ test('authLogin should return token when request is ok', async () => {
 })
 
 test('authLogin should return error when getUser get a error', async () => {
-  authRepository.getUser = jest.fn(() => {
+  userRepository.getUser = jest.fn(() => {
     throw new TypeError()
   })
 
@@ -67,7 +67,7 @@ test('authLogin should return error when generateToken get a error', async () =>
 })
 
 test('authLogin should return error when getUser returns no user', async () => {
-  authRepository.getUser = jest.fn(() => null)
+  userRepository.getUser = jest.fn(() => null)
 
   expect.assertions(expectAssertValue)
 

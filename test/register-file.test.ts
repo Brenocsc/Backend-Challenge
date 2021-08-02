@@ -1,9 +1,8 @@
 import i18n from 'i18n'
 import { registerFile } from './register-file'
-import { fileRepository } from '../../repository'
-import { translateService } from '../../../../core/services/translate'
-import { jwtService } from '../../../../core/services/jwt'
-import { config } from '../../../../core/config'
+import { fileRepository } from '../src/api/repositories/file-repository'
+import { translateService } from '../src/api/services/translate'
+import { config } from '../src/config'
 
 i18n.configure(config.i18nConfig)
 
