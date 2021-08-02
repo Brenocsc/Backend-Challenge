@@ -1,7 +1,7 @@
 import { Router } from 'express'
-import { authController } from './controller'
+import { authController } from '../controllers/auth-controller'
 
-const authRouter = new Router()
+const authRouter = Router()
 
 authRouter.post('/login', authController.processAuthLogin)
 
