@@ -13,4 +13,4 @@ i18n.configure(config.i18nConfig)
 
 app.use(routers)
 
-app.listen(3000)
+app.listen(config.port)
