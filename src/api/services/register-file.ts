@@ -1,4 +1,4 @@
-import { Request, Response } from 'express'
+import { Request } from 'express'
 import { fileRepository } from '../repositories/file-repository'
 import { userRepository } from '../repositories/user-repository'
 import { translateService } from './translate'
@@ -65,7 +65,7 @@ const buildAndWriteFile = async (user: User, body: RegisterFileBody) => {
   }
 }
 
-const registerFile = async (req: Request, _: Response) => {
+const registerFile = async (req: Request) => {
   try {
     const { body } = req
     const user = await getUser(body.userId)

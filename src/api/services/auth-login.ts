@@ -1,4 +1,4 @@
-import { Request, Response } from 'express'
+import { Request } from 'express'
 import { userRepository } from '../repositories/user-repository'
 import { translateService } from './translate'
 import { serializeError } from './serialize-error'
@@ -29,7 +29,7 @@ const checkPassword = async (password: string, user: User) => {
   }
 }
 
-const authLogin = async (req: Request, _: Response) => {
+const authLogin = async (req: Request) => {
   try {
     const { login, password } = req.body
     const user = await getUser(login)
