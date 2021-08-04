@@ -1,0 +1,148 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a simple example NodeJS API project for authenticating and writing files.",
+    "version": "1.0.0",
+    "title": "Backend Challenge API",
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "schemes": ["http"],
+  "host": "localhost:3000",
+  "paths" : {
+    "/auth/login" : {
+      "post" : {
+        "summary" : "Login",
+        "description": "Login to authenticate to other requests",
+        "produces": ["application/json"],
+        "parameters": [{
+          "in": "body",
+          "name": "body",
+          "description": "Login credentials",
+          "required": true,
+          "schema": {
+            "type": "object",
+            "required": [
+              "login",
+              "password"
+            ],
+            "properties": {
+              "login": {
+                "type": "string",
+                "example": "joaosilva123"
+              },
+              "password": {
+                "type": "string",
+                "example": "easy12345"
+              }
+            }
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "authToken": {
+                  "type": "string",
+                  "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6I.eyJpZCI6IjAzNmEyOTAzLTUwNWYtNDA4ZC04ZTBiLTYzNDllOWJjZDJlZCIsImlhdCI6MTYyODA3MzI3OCwiZXhwIj.QsoTMtT4TklOQz2qAZMRg7WMKx5NErM"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Failed to login",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Login error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/file/register" : {
+      "post" : {
+        "summary" : "Register user",
+        "description": "Register a new user in a file",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "example": "Bearer &lt;authToken&gt;"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "type": "object",
+              "required": [
+                "name",
+                "birth",
+                "cpf",
+                "rg"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "João da Silva"
+                },
+                "birth": {
+                  "type": "string",
+                  "example": "01 03 1992"
+                },
+                "cpf": {
+                  "type": "string",
+                  "example": "123.423.423-34"
+                },
+                "rg": {
+                  "type": "string",
+                  "example": "MG 19 443 521"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Failed to register",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Register error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized operation",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "User unauthorized"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
