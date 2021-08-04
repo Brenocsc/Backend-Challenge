@@ -38,7 +38,9 @@ describe('AuthLogin', () => {
   })
   
   test('authLogin should return token when request is ok', async () => {
-    const tokenExpected =  '036a2903123'
+    const tokenExpected =  {
+      authToken: '036a2903123'
+    }
     const token = await authLogin(requestBody as Request)
   
     expect(token).toEqual(tokenExpected)

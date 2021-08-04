@@ -36,7 +36,9 @@ const authLogin = async (req: Request) => {
 
     await checkPassword(password, user)
 
-    return jwtService.generateToken(user)
+    return { 
+      authToken: jwtService.generateToken(user)
+    }
   } catch (error) {
     return Promise.reject(
       serializeError(error, translateService.translate('AUTH.AUTH_LOGIN.ERROR.DEFAULT'))

@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from 'express'
 
 const UNAUTHORIZED_STATUS = 401
 const UNAUTHORIZED_MESSAGE = {
-  error: 'User unauthorized'
+  message: 'User unauthorized'
 }
 
 const auth = (req: Request, res: Response, next: NextFunction) => {
